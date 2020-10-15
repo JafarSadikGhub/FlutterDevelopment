@@ -66,3 +66,26 @@ void main() {
   print(p2.age);
   print(addNumbers(1, 2));
 }
+//5
+class Person
+{
+  String name;
+  int age;
+  
+  Person({this.name, this.age = 30});
+}
+int addNumbers(int num1, int num2) {
+  return num1 + num2;
+}
+
+void main() {
+  var p1 = new Person(name: 'Max',age: 30); 
+  var p2 = new Person(name: 'Manu', age: 31);
+  //p2.name= 'Jafar';
+  print(p1.age);
+  print(p1.name);
+  print(p2.name);
+  print(p2.age);
+  print(addNumbers(1, 2));
+}
+

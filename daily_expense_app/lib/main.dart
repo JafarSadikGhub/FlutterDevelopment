@@ -1,17 +1,15 @@
-import './transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-void main() {
-  runApp(MyApp());
-}
+import './transaction.dart';
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter App',
       home: MyHomePage(),
     );
   }
@@ -20,18 +18,21 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   final List<Transaction> transactions = [
     Transaction(
-      id: '001',
+      id: 't1',
       title: 'New Shoes',
-      amount: 700,
+      amount: 69.99,
       date: DateTime.now(),
     ),
     Transaction(
-      id: '002',
+      id: 't2',
       title: 'Weekly Groceries',
-      amount: 50,
+      amount: 16.53,
       date: DateTime.now(),
     ),
   ];
+  String titleInput;
+  String amountInput;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +40,7 @@ class MyHomePage extends StatelessWidget {
         title: Text('Flutter App'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        // mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
@@ -47,13 +48,41 @@ class MyHomePage extends StatelessWidget {
             child: Card(
               color: Colors.blue,
               child: Text('CHART!'),
-              elevation: 10,
+              elevation: 5,
+            ),
+          ),
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Title'),
+                    onChanged: (val) {
+                      titleInput = val;
+                    },
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Amount'),
+                    onChanged: (val) => amountInput = val,
+                  ),
+                  FlatButton(
+                    child: Text('Add Transaction'),
+                    textColor: Colors.purple,
+                    onPressed: () {
+                      print(titleInput);
+                      print(amountInput);
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           Column(
             children: transactions.map((tx) {
               return Card(
-                //color: Colors.red,
                 child: Row(
                   children: <Widget>[
                     Container(
@@ -69,7 +98,7 @@ class MyHomePage extends StatelessWidget {
                       ),
                       padding: EdgeInsets.all(10),
                       child: Text(
-                        '\৳${tx.amount}', //String interpolation
+                        '\$${tx.amount}',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -88,18 +117,18 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          DateFormat('MMM dd, y').format(tx.date),
+                          DateFormat.yMMMd().format(tx.date),
                           style: TextStyle(
                             color: Colors.grey,
                           ),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               );
             }).toList(),
-          )
+          ),
         ],
       ),
     );

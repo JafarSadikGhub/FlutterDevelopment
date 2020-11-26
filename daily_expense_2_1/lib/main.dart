@@ -80,7 +80,7 @@ class MyHomePage extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        tx.date.toString(),
+                        DateFormat().format(tx.date),
                         style: TextStyle(color: Colors.grey, fontSize: 12),
                       ),
                     ],

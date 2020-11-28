@@ -26,7 +26,7 @@ class TransactionList extends StatelessWidget {
               ),
               padding: EdgeInsets.all(10),
               child: Text(
-                '\$${transactions[index].amount}', //String interpolation
+                '\$${transactions[index].amount.toStringAsFixed(2)}', //String interpolation
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
@@ -44,7 +44,7 @@ class TransactionList extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  DateFormat('dd/MM/yy').format(tx.date),
+                  DateFormat('dd/MM/yy').format(transactions[index].date),
                   style: TextStyle(color: Colors.grey, fontSize: 12),
                 ),
               ],
@@ -53,9 +53,10 @@ class TransactionList extends StatelessWidget {
         );
         },
         itemCount: transactions.length,
-        children: transactions.map((tx) {
-        return 
-      }).toList()),
+      //   children: transactions.map((tx) {
+      //   return 
+      // }).toList()
+      ),
     );
   }
 }

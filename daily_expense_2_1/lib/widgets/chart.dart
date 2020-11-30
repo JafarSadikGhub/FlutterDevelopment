@@ -23,6 +23,7 @@ class Chart extends StatelessWidget {
       // print(totalSum);
 
       return {
+        //Will return total value of a day
         'day': DateFormat.E().format(weekDay).substring(0, 1),
         'amount': totalSum,
       };
@@ -30,6 +31,7 @@ class Chart extends StatelessWidget {
   }
 
   double get totalSpending {
+//Will return total spending of last 7days
     return groupedTransactionValues.fold(0.0, (sum, item) {
       return sum + item['amount'];
     });

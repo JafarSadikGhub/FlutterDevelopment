@@ -31,7 +31,7 @@ class _NewTransactionState extends State<NewTransaction> {
   Widget build(BuildContext context) {
     return Card(
       elevation: 5,
-      color: Colors.redAccent,
+      //color: Colors.redAccent,
       child: Container(
         padding: EdgeInsets.all(10),
         child: Column(
@@ -50,6 +50,7 @@ class _NewTransactionState extends State<NewTransaction> {
               controller: amountController,
               keyboardType: TextInputType.number,
               onSubmitted: (_) => submitData(),
+              //style: Theme.of(context).textTheme.headline6
               // onChanged: (val) {
               //   amountInput = val;
               // },
@@ -57,7 +58,10 @@ class _NewTransactionState extends State<NewTransaction> {
             FlatButton(
               onPressed: submitData,
               child: Text('Add Transaction'),
-              textColor: Colors.green,
+              
+              //color: Theme.of(context).primaryColor,
+              
+              textColor: Colors.purple,
             )
           ],
         ),

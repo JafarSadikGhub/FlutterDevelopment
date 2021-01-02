@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import './models/post.dart';
+import './widgets/new_post.dart';
+import './widgets/post_list.dart';
 
 void main() {
   runApp(MyApp());

@@ -1,0 +1,4 @@
+OPEN VSCODE COMMAND PALLETE:
+ctrl + shift + p
+Open dart dev tool:
+VSCODE COMMAND > dart: dev tool

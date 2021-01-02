@@ -20,15 +20,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
         accentColor: Colors.green,
+        errorColor: Colors.red,
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
-              headline6: TextStyle(
-                fontFamily: 'OpenSans',
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-              button: TextStyle(color: Colors.white)
+            headline6: TextStyle(
+              fontFamily: 'OpenSans',
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
             ),
+            button: TextStyle(color: Colors.white)),
         appBarTheme: AppBarTheme(
           textTheme: ThemeData.light().textTheme.copyWith(
                 headline6: TextStyle(
@@ -69,20 +69,21 @@ class _MyHomePageState extends State<MyHomePage> {
     //   date: DateTime.now(),
     // ),
   ];
-  List<Transaction> get _recentTransactions
-  {
-    return _userTransactions.where((tx)
-    {
-      return tx.date.isAfter(DateTime.now().subtract(
-        Duration(days: 7),
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((tx) {
+      return tx.date.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
         ),
-        );
+      );
 
       /*Will return true if tx.date is after the date in
-      "isAfter(param)" in param date*/ 
+      "isAfter(param)" in param date*/
     }).toList();
   }
-  void _addNewTransaction(String txTitle, double txAmount, DateTime chosenDate) {
+
+  void _addNewTransaction(
+      String txTitle, double txAmount, DateTime chosenDate) {
     final newTx = Transaction(
       title: txTitle,
       amount: txAmount,
@@ -107,10 +108,18 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((tx) {
+        return tx.id == id;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( 
+      appBar: AppBar(
         title: Text('Personal Expenses'),
         actions: <Widget>[
           IconButton(
@@ -125,8 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Chart(_recentTransactions),
-              
-              TransactionList(_userTransactions),
+              TransactionList(_userTransactions, _deleteTransaction),
             ]),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

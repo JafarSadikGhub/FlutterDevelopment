@@ -37,10 +37,30 @@ class _NewPostState extends State<NewPost> {
               controller: postTitleController,
               onSubmitted: (_) => submitData(),
             ),
-            TextField(
-              decoration: InputDecoration(labelText: 'Post Text'),
-              controller: postTextController,
-              onSubmitted: (_) => submitData(),
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: TextField(
+                  minLines: 10,
+                  maxLines: 15,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                    hintText: 'Write your status here',
+                    filled: true,
+                    fillColor: Color(0xFFDBEDFF),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                  ),
+                  controller: postTextController,
+                  onSubmitted: (_) => submitData(),
+                ),
+              ),
             ),
             FlatButton(
               onPressed: submitData,
